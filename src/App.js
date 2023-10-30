@@ -71,7 +71,7 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1} style="color:red;">My Notes App</Heading>
+      <h1 style={{'color':'red'}}> My Notes App</h1>
       <ul>
         <li>my</li>
         <li>bullet</li>
