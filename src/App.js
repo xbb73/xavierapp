@@ -4,6 +4,10 @@ import "@aws-amplify/ui-react/styles.css";
 import { API, Storage } from 'aws-amplify';
 import {
   Button,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
   Flex,
   Heading,
   Image,
@@ -48,6 +52,7 @@ const App = ({ signOut, user }) => {
       name: form.get("name"),
       description: form.get("description"),
       image: image.name,
+      author: user.attributes.email
     };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -114,13 +119,14 @@ const App = ({ signOut, user }) => {
       </View>
       <Heading level={2}>Current Notes</Heading>
       <View margin="3rem 0">
-      {notes.map((note) => (
+      <Table><TableBody>{notes.map((note) => (
   <Flex
     key={note.id || note.name}
     direction="row"
     justifyContent="center"
     alignItems="center"
   >
+    <Text as="span">{note.author}</Text>
     <Text as="strong" fontWeight={700}>
       {note.name}
     </Text>
@@ -136,7 +142,7 @@ const App = ({ signOut, user }) => {
       Delete note
     </Button>
   </Flex>
-))}
+))} </TableBody></Table>
       </View>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
