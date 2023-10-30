@@ -76,7 +76,13 @@ const App = ({ signOut }) => {
         <li>my</li>
         <li>bullet</li>
         <li>list</li>
-      </ul>  
+      </ul>
+      <a href="tryme.html">
+        <button>Food Page</button>
+      </a>
+      <a href="quote1.html">
+        <button>Quote Page</button>
+      </a>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
