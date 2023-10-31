@@ -9,6 +9,7 @@ import {
   TableRow,
   TableCell,
   Flex,
+  Link,
   Heading,
   Image,
   Text,
@@ -92,16 +93,16 @@ const App = ({ signOut, user }) => {
         <Flex direction="row" justifyContent="center">
           <TextField
             name="name"
-            placeholder="Note Name"
-            label="Note Name"
+            placeholder="Name"
+            label="Name"
             labelHidden
             variation="quiet"
             required
           />
           <TextField
             name="description"
-            placeholder="Note Description"
-            label="Note Description"
+            placeholder="URL"
+            label="URL"
             labelHidden
             variation="quiet"
             required
@@ -120,28 +121,29 @@ const App = ({ signOut, user }) => {
       <Heading level={2}>Current Notes</Heading>
       <View margin="3rem 0">
       <Table><TableBody>{notes.map((note) => (
-  <Flex
-    key={note.id || note.name}
-    direction="row"
-    justifyContent="center"
-    alignItems="center"
-  >
-    <Text as="span">{note.author}</Text>
-    <Text as="strong" fontWeight={700}>
+  
+    <TableRow key={note.id || note.name}>
+      <TableCell>
+  
+    <Text as="span">{note.author.substring(0,note.author.indexOf("@"))}
+    </Text></TableCell><TableCell><Link
+    href={note.description}
+    color="#007EB9"
+    isExternal={true}>
       {note.name}
-    </Text>
-    <Text as="span">{note.description}</Text>
+    </Link></TableCell><TableCell>
+    
     {note.image && (
       <Image
         src={note.image}
         alt={`visual aid for ${notes.name}`}
         style={{ width: 400 }}
       />
-    )}
+    )}</TableCell><TableCell>
     <Button variation="link" onClick={() => deleteNote(note)}>
       Delete note
     </Button>
-  </Flex>
+    </TableCell></TableRow>
 ))} </TableBody></Table>
       </View>
       <Button onClick={signOut}>Sign Out</Button>
