@@ -89,6 +89,9 @@ const App = ({ signOut, user }) => {
       <a href="quote1.html">
         <button>Quote Page</button>
       </a>
+      <a href="headrick.html">
+        <button>Test Page</button>
+      </a>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
