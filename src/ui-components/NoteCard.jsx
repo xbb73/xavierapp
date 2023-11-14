@@ -26,7 +26,7 @@ export default function NoteCard(props) {
     >
       <Image
         width="unset"
-        height="160px"
+        height="140px"
         display="block"
         gap="unset"
         alignItems="unset"
