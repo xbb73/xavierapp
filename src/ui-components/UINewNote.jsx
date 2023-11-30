@@ -6,7 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { useAuth } from "@aws-amplify/ui-react/internal";
+import { useState } from "react";
+import { API } from "aws-amplify";
+import { createNote } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -18,7 +22,29 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function UINewNote(props) {
-  const { overrides, ...rest } = props;
+  const { note, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
+  const [
+    textFieldFourZeroFiveZeroOneSevenNineFiveValue,
+    setTextFieldFourZeroFiveZeroOneSevenNineFiveValue,
+  ] = useState("");
+  const [
+    textFieldFourZeroFiveZeroOneSevenNineSixValue,
+    setTextFieldFourZeroFiveZeroOneSevenNineSixValue,
+  ] = useState("");
+  const buttonOnClick = async () => {
+    await API.graphql({
+      query: createNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldFourZeroFiveZeroOneSevenNineFiveValue,
+          description: textFieldFourZeroFiveZeroOneSevenNineSixValue,
+          author: authAttributes["email"],
+        },
+      },
+    });
+  };
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
       gap="16px"
@@ -200,6 +226,12 @@ export default function UINewNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourZeroFiveZeroOneSevenNineFiveValue}
+            onChange={(event) => {
+              setTextFieldFourZeroFiveZeroOneSevenNineFiveValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField40501795")}
           ></TextField>
           <TextField
@@ -213,6 +245,12 @@ export default function UINewNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourZeroFiveZeroOneSevenNineSixValue}
+            onChange={(event) => {
+              setTextFieldFourZeroFiveZeroOneSevenNineSixValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField40501796")}
           ></TextField>
           <TextField
@@ -246,6 +284,12 @@ export default function UINewNote(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
+          onClick={() => {
+            buttonOnClick();
+          }}
+          onMouseOut={() => {
+            buttonOnMouseOut();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
       </Flex>

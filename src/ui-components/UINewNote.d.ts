@@ -36,6 +36,8 @@ export declare type UINewNoteOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type UINewNoteProps = React.PropsWithChildren<Partial<FlexProps> & {
+    note?: any;
+} & {
     overrides?: UINewNoteOverridesProps | undefined | null;
 }>;
 export default function UINewNote(props: UINewNoteProps): React.ReactElement;

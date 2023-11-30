@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import { NoteNavBar, NoteCollection, NoteCreateForm } from "./ui-components";
+import { NoteNavBar, NoteCollection, UINewNote } from "./ui-components";
 import { Routes, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
     <div className="App"><header className="App-header">
       <Routes>
         <Route exact path = '/' element={<div><NoteNavBar/><NoteCollection/></div>} />
-        <Route exact path = '/new' element={<NoteCreateForm/>}/>
+        <Route exact path = '/new' element={<UINewNote/>}/>
       </Routes>
       </header></div>
     );
