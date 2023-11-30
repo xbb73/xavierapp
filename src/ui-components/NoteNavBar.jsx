@@ -6,10 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
 export default function NoteNavBar(props) {
   const { overrides, ...rest } = props;
+  const starOneOnClick = useNavigateAction({ type: "url", url: "/new" });
   return (
     <Flex
       gap="20px"
@@ -54,6 +55,9 @@ export default function NoteNavBar(props) {
           justifyContent="unset"
           shrink="0"
           position="relative"
+          onClick={() => {
+            starOneOnClick();
+          }}
           {...getOverrideProps(overrides, "Star 1")}
         ></Icon>
         <Text

@@ -10,7 +10,7 @@ class App extends Component {
     <div className="App"><header className="App-header">
       <Routes>
         <Route exact path = '/' element={<div><NoteNavBar/><NoteCollection/></div>} />
-        {/* <Route exact path = '/new' element={<UINewNote/>}/> */}
+        <Route exact path = '/new' element={<UINewNote/>}/>
       </Routes>
       </header></div>
     );
